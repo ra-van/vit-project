@@ -1,0 +1,137 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Weapons Search | VIT</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+<style>
+
+.footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: gray;
+   color: white;
+   text-align: center;
+}
+
+body {
+	margin: 0;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.topnav {
+	overflow: hidden;
+	background-color: #333;
+}
+
+.topnav a {
+	float: left;
+	color: #f2f2f2;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+	font-size: 17px;
+}
+
+.topnav a:hover {
+	background-color: #ddd;
+	color: black;
+}
+
+.topnav a.active {
+	background-color: #4CAF50;
+	color: white;
+}
+
+#weapons {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#weapons td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#weapons tr:nth-child(even){background-color: #f2f2f2;}
+
+#weapons tr:hover {background-color: #ddd;}
+
+#weapons th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+}
+
+div {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+</style>
+</head>
+
+<body>
+
+	<div class="topnav">
+		<a class="active" href="/">Home</a> 
+		<a href="/contact">Contact</a> 
+		<a href="/about">About</a>
+	</div>
+
+	<br />
+	<br />
+	<br />
+	<div class="div">
+
+		<table id="weapons" class="table">
+			<thead class="thead-dark">
+				<tr>
+					<th>Name</th>
+					<th>Type</th>
+					<th>Calibre</th>
+					<th>Country</th>
+					<th>Description</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:if="${searchResults.empty}">
+					<td colspan="2">No Weapons Found</td>
+				</tr>
+				<tr th:each="weapon : ${searchResults}">
+					<td><span th:text="${weapon.name}"> Name </span></td>
+					<td><span th:text="${weapon.type}"> Type </span></td>
+					<td><span th:text="${weapon.calibre}"> Calibre </span></td>
+					<td><span th:text="${weapon.country}"> Country </span></td>
+					<td><span th:text="${weapon.desc}"> Description </span></td>
+				</tr>
+			</tbody>
+		</table>
+
+	</div>
+
+	<p th:if="${searchResults.isEmpty()}">
+		<strong>Hint</strong>: the query "<a href='/search?q=pistol'>Pistol</a>"
+		should return some results.
+	</p>
+
+	<p align="right" th:if="${searchResults.isEmpty()}">
+		<strong>Or</strong>: Go Back to Search -- <a href='/'>back</a>
+	</p>
+
+	
+	<div class="footer" align="center">
+	<hr />
+		Intern Project for <a href='https://www.drdo.gov.in/'>DRDO</a>
+	</div>
+</body>
+</html>

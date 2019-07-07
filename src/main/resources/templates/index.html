@@ -1,0 +1,133 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Weapons Search | VIT</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+
+body {
+	margin: 0;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+form.example input[type=text] {
+  padding: 10px;
+  font-size: 17px;
+  border: 1px solid grey;
+  float: left;
+  width: 80%;
+  background: #f1f1f1;
+}
+
+form.example button {
+  float: left;
+  width: 20%;
+  padding: 10px;
+  background: #2196F3;
+  color: white;
+  font-size: 17px;
+  border: 1px solid grey;
+  border-left: none;
+  cursor: pointer;
+}
+
+form.example button:hover {
+  background: #0b7dda;
+}
+
+form.example::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: gray;
+   color: white;
+   text-align: center;
+}
+
+.topnav {
+	overflow: hidden;
+	background-color: #333;
+}
+
+.topnav a {
+	float: left;
+	color: #f2f2f2;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+	font-size: 17px;
+}
+
+.topnav a:hover {
+	background-color: #ddd;
+	color: black;
+}
+
+.topnav a.active {
+	background-color: #4CAF50;
+	color: white;
+	}
+
+.containerCustom {
+    width: 1000px;
+    margin-top: 100px;
+    text-align: center;
+  }
+  h2 {
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    size: 150px;
+    fill: #294F6D;
+  }
+  
+  h1 {
+    text-align: center;
+    fill: 02111 D;
+  }
+  .search input[type="search"] {
+    width: 600px;
+    height: 100px;
+  }
+}
+</style>
+</head>
+
+<body>
+	<div class="topnav">
+		<a class="active" href="/">Home</a> 
+		<a href="/contact">Contact</a> 
+		<a href="/about">About</a>
+	</div>
+	<br />
+	<br />
+	<br />
+	<div class="container" align="center">
+		<h2>Search for Weapons</h2>
+		<form class="example" style="margin:auto;max-width:300px" th:object="${searchResults}" th:action="@{/search}" method="get">
+		
+		<input type="text" placeholder="Search.." name="q" id="q" th:value="${search}">
+ 	 	<button type="submit"  value="Search"><i class="fa fa-search"></i></button>
+		
+		</form>
+	</div>
+	<div class="footer" align="center">
+	<hr />
+  	Intern Project for <a href='https://www.drdo.gov.in/'>DRDO</a>
+	</div>
+</body>
+
+</html>
