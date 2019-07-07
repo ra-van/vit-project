@@ -22,7 +22,7 @@ public class MainController {
   // PRIVATE FIELDS
   // ------------------------
 
-  // Inject the UserSearch object
+  // Inject the WeaponSearch object
   @Autowired
   private WeaponSearch weaponSearch;
 

@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
 import com.vit.drd.model.Weapon;
 
 /**
- * Search methods for the entity User using Hibernate search.
+ * Search methods for the entity Weapon using Hibernate search.
  * The Transactional annotation ensure that transactions will be opened and
  * closed at the beginning and at the end of each method.
  * 
@@ -36,12 +36,15 @@ public class WeaponSearch {
   // ------------------------
   
   /**
-   * A basic search for the entity User. The search is done by exact match per
-   * keywords on fields name, city and email.
+   * A basic search for the entity Weapon. The search is done by exact match per
+   * keywords on fields name, type etc
+   * 
+   * ref- https://www.baeldung.com/hibernate-search
    * 
    * @param text The query text.
    */
-  public List<Weapon> search(String text) {
+ 
+public List<Weapon> search(String text) {
     
     // get the full text entity manager
     FullTextEntityManager fullTextEntityManager =
@@ -60,6 +63,17 @@ public class WeaponSearch {
         .onFields("name", "type", "calibre","stockType","stockMaterial","gripMaterial","fixedAccessories","muzzleDevice","magazine","countryOfManufacture")
         .matching(text)
         .createQuery();
+    
+    //Use this to demo Fuzzy query
+    @SuppressWarnings("unused")
+    org.apache.lucene.search.Query fuzzyQuery = queryBuilder
+    		  .keyword()
+    		  .fuzzy()
+    		  .withEditDistanceUpTo(2)
+    		  .withPrefixLength(0)
+    		  .onField("name")
+    		  .matching(text)
+    		  .createQuery();
 
     // wrap Lucene query in an Hibernate Query object
     org.hibernate.search.jpa.FullTextQuery jpaQuery =
