@@ -57,21 +57,20 @@ public List<Weapon> search(String text) {
       .buildQueryBuilder().forEntity(Weapon.class).get();
     
     // a very basic query by keywords
-    org.apache.lucene.search.Query query =
+    /*org.apache.lucene.search.Query query =
       queryBuilder
         .keyword()
         .onFields("name", "type", "calibre","stockType","stockMaterial","gripMaterial","fixedAccessories","muzzleDevice","magazine","countryOfManufacture")
         .matching(text)
-        .createQuery();
+        .createQuery();*/
     
     //Use this to demo Fuzzy query
-    @SuppressWarnings("unused")
-    org.apache.lucene.search.Query fuzzyQuery = queryBuilder
+    org.apache.lucene.search.Query query = queryBuilder
     		  .keyword()
     		  .fuzzy()
     		  .withEditDistanceUpTo(2)
     		  .withPrefixLength(0)
-    		  .onField("name")
+    		  .onFields("name", "type", "calibre","stockType","stockMaterial","gripMaterial","fixedAccessories","muzzleDevice","magazine","countryOfManufacture")
     		  .matching(text)
     		  .createQuery();
 
